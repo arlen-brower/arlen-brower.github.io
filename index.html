@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Assignment Design</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h3>Assignment Design</h3>
+				<p>With Antoni and Arlen</p>
+			</section>
+
+			<!-- --------- -->
+			<section data-auto-animate>
+				<h3>Coding Questions</h3>
+				<p class="fragment">What will the following print out?</p>
+				<pre data-id="code" class="fragment"><code class="python" data-trim data-noescape
+						data-line-numbers="1-4|1|2-3|4">
+						for i in range(10):
+						print(i)
+						i = 5
+						print(i)
+					</code></pre>
+			</section>
+			<!-- --------- -->
+			<section data-auto-animate>
+				<h3>Coding Questions</h3>
+				<pre data-id="code"><code class="python" data-trim data-noescape data-line-numbers="2,4">
+						for i in range(10):
+						print(i)
+						i = 5
+						print(i)
+					</code></pre>
+				<pre class="fragment"><code class="python">
+						0
+						1
+						2
+						3
+						4
+						5
+						6
+						7
+						8
+						9
+						5
+					</code></pre>
+			</section>
+			<!-- --------- -->
+			<section data-auto-animate>
+				<h3>Unit Learning Outcomes</h3>
+				<ul>
+					<li class="fragment">Implement algorithms in the C programming language</li>
+					<li class="fragment fade-in-then-semi-out">Write and interpret standard C pointer expressions</li>
+					<li class="fragment fade-in-then-semi-out">Implement C code which dynamically allocates/deallocates memory
+					</li>
+					<li class="fragment fade-in-then-semi-out">Employ Unix/C tools to diagnose problem faults</li>
+					<li class="fragment fade-in-then-semi-out">Employ standard Unix/C tools to build software</li>
+				</ul>
+				<p class="fragment"></p>
+			</section>
+
+			<!-- --------- -->
+			<section data-auto-animate>
+				<h3>Unit Learning Outcomes</h3>
+				<ul>
+					<li>Implement algorithms in the C programming language</li>
+					<li class="fragment">...basically, all the dot points from session one.</li>
+				</ul>
+
+
+			</section>
+
+			<!-- --------- -->
+
+			<section>
+				<h3>Assignments</h3>
+			</section>
+
+			<!-- --------- -->
+			<section data-background-iframe="UCP_2022_S2_Assignment_1.pdf" data-background-interactive></section>
+			<!-- --------- -->
+
+			<section>
+				<h3>Requirements to Outcomes</h3>
+				<p>Let's take section 3.3 as an example</p>
+				<ul>
+					<li class="fragment" data-fragment-index="1">Clear the terminal screen</li>
+					<ul class="fragment" data-fragment-index="4">
+						<li>... use system('clear')</li>
+					</ul>
+					<li class="fragment" data-fragment-index="2">Print the 2D map</li>
+					<ul class="fragment" data-fragment-index="5">
+						<li>... use nested for loops on an array</li>
+					</ul>
+					<li class="fragment" data-fragment-index="3">Update the map with each input</li>
+					<ul class="fragment" data-fragment-index="6">
+						<li>...do this in a modular way </li>
+					</ul>
+				</ul>
+			</section>
+
+			<!-- --------- -->
+
+
+			<section>
+				<h3>Example Submission</h3>
+				<pre><code class="c" data-line-numbers="1-38|5,6|12,19|1,8-9" data-trim data-noescape>
+						void renderMap(int rowCount, int columnCount, int playerRow, int playerColumn, int goalRow, int goalColumn,
+						char** mapArray)
+						{
+						int row, column;
+
+						/* Clear the terminal screen */
+						system("clear");
+
+						/* Print out the top border of the map */
+						renderHorizontalMapEdge(columnCount);
+
+						/* Loop through every row that needs to be printed out, making sure to include the map edge */
+						for (row = 0; row < rowCount; row ++) { /* Left edge of the row */ putchar(MAPEDGE); putchar(MAPSPACE); /*
+							Now loop through the row and print out each character in the character array, but also checking for the
+							goal and the player */ for (column=0; column < columnCount; column ++) { if (row==playerRow &&
+							column==playerColumn) { putchar(PLAYER); } else if (row==goalRow && column==goalColumn) { putchar(GOAL); }
+							else { putchar(mapArray[row][column]); } putchar(MAPSPACE); } putchar(MAPEDGE); putchar('\n'); } </code>
+				</pre>
+			</section>
+
+			<section>
+				<h4> Live Demonstrations with Antoni
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
