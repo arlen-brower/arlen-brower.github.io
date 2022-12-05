@@ -40,8 +40,8 @@
 				<h3>Coding Questions</h3>
 				<pre data-id="code"><code class="python" data-trim data-noescape data-line-numbers="2,4">
 						for i in range(10):
-						print(i)
-						i = 5
+							print(i)
+							i = 5
 						print(i)
 					</code></pre>
 				<pre class="fragment"><code class="python">
@@ -130,11 +130,32 @@
 						renderHorizontalMapEdge(columnCount);
 
 						/* Loop through every row that needs to be printed out, making sure to include the map edge */
-						for (row = 0; row < rowCount; row ++) { /* Left edge of the row */ putchar(MAPEDGE); putchar(MAPSPACE); /*
-							Now loop through the row and print out each character in the character array, but also checking for the
-							goal and the player */ for (column=0; column < columnCount; column ++) { if (row==playerRow &&
-							column==playerColumn) { putchar(PLAYER); } else if (row==goalRow && column==goalColumn) { putchar(GOAL); }
-							else { putchar(mapArray[row][column]); } putchar(MAPSPACE); } putchar(MAPEDGE); putchar('\n'); } </code>
+						for (row = 0; row < rowCount; row ++) 
+						{ 
+							/* Left edge of the row */ 
+							putchar(MAPEDGE); 
+							putchar(MAPSPACE); 
+							/* Now loop through the row and print out each character in the character array, 
+							but also checking for the goal and the player */
+							for (column=0; column < columnCount; column ++) 
+							{ 
+								if (row==playerRow && column==playerColumn) 
+								{ 
+									putchar(PLAYER); 
+								} 
+								else if (row==goalRow && column==goalColumn)
+								{ 
+									putchar(GOAL); 
+								}
+								else 
+								{ 
+									putchar(mapArray[row][column]); 
+								}
+								putchar(MAPSPACE); 
+							}
+							putchar(MAPEDGE); 
+							putchar('\n'); 
+						} </code>
 				</pre>
 			</section>
 
